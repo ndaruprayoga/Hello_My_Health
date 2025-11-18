@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdlib>
 using namespace std;
 
 
@@ -6,10 +7,16 @@ float berat = 0, tinggi = 0, bmi = 0;
 int gelas = 0, kalori = 0;
 
 void kalkulattorBMI();
-void reminderWaterIntake();
-void kalkulatorCalories();
+void kebutuhanasupanTubuh();
 void mcuSederhana();
 void menuUtama();
+void clearScreen() {
+    #ifdef _WIN32
+        system("cls");
+    #else
+        system("clear");
+    #endif
+}
 
 int beratNasi;
 int beratLauk;
@@ -24,10 +31,9 @@ void menuUtama() {
     cout << "Selamat datang di Aplikasi Hello My Health!" << endl;
     cout << "=== Menu Utama ===" << endl;
     cout << "1. Kalkulattor BMI" << endl;
-    cout << "2. Reminder Water Intake" << endl;
-    cout << "3. Kalkulator Calories" << endl;
-    cout << "4. MCU Sederhana" << endl;
-    cout << "5. Keluar" << endl;
+    cout << "2. Kebutuhan Asupan Tubuh" << endl;
+    cout << "3. MCU Sederhana" << endl;
+    cout << "4. Keluar" << endl;
     cout << "Pilih menu (1-5): ";
     cin >> pilihan;
 
@@ -36,15 +42,12 @@ void menuUtama() {
             kalkulattorBMI();
             break;
         case 2:
-            reminderWaterIntake();
+            kebutuhanasupanTubuh();
             break;
         case 3:
-            kalkulatorCalories();
-            break;
-        case 4:
             mcuSederhana();
             break;
-        case 5:
+        case 4:
             cout << "Terima kasih telah menggunakan aplikasi ini!, Sehat selaluu:)" << endl;
             return;
         default:
@@ -72,24 +75,12 @@ void kalkulattorBMI() {
     }
 }
 
-void reminderWaterIntake() {
+void kebutuhanasupanTubuh() {
     cout << "=== Reminder Water Intake ===" << endl;
     cout << "Masukkan jumlah gelas air yang Anda minum hari ini: ";
     cin >> gelas;
     cout << "Anda telah minum " << gelas << " gelas air hari ini." << endl;
     cout << "Jumlah ideal adalah 8 gelas per hari." << endl;
-    if (gelas < 8) {
-        cout << "Ingat untuk minum lebih banyak air!" << endl;
-        if (gelas < 4) {
-            cout << "Anda sangat kurang minum air. Pastikan untuk minum setidaknya 8 gelas sehari." << endl;
-        }
-    } else {
-        cout << "Bagus! Anda sudah cukup minum air hari ini." << endl;
-    }
-}
-
-void kalkulatorCalories() {
-    cout << "=== Kalkulator Calories ===" << endl;
     cout << "Masukan berat nasi yang Anda konsumsi (minimal 100 gram): ";
     cin >> beratNasi;
     int kaloriNasi = beratNasi * 129; // Asumsi 1 gram nasi mengandung 1.3 kalori
@@ -110,6 +101,14 @@ void kalkulatorCalories() {
         cout << "Kalori Anda sesuai dengan kebutuhan harian." << endl;
     } else {
         cout << "Kalori Anda melebihi kebutuhan harian." << endl;
+    }
+    if (gelas < 8) {
+        cout << "Ingat untuk minum lebih banyak air!" << endl;
+        if (gelas < 4) {
+            cout << "Anda sangat kurang minum air. Pastikan untuk minum setidaknya 8 gelas sehari." << endl;
+        }
+    } else {
+        cout << "Bagus! Anda sudah cukup minum air hari ini." << endl;
     }
 }
 
