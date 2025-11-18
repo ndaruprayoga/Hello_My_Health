@@ -7,12 +7,15 @@ int gelas = 0, kalori = 0;
 
 void kalkulattorBMI();
 void kebutuhanasupanTubuh();
+void kualitasTidur();
 void mcuSederhana();
 void menuUtama();
 
 int beratKarbo;
 int beratProtein;
 int beratSerat;
+int jamTidur;
+int jamBangun;
 
 int main() {
     menuUtama();
@@ -24,8 +27,9 @@ void menuUtama() {
     cout << "=== Menu Utama ===" << endl;
     cout << "1. Kalkulattor BMI" << endl;
     cout << "2. Kebutuhan Asupan Tubuh" << endl;
-    cout << "3. MCU Sederhana" << endl;
-    cout << "4. Keluar" << endl;
+    cout << "3. Kualitas Tidur" << endl;
+    cout << "4. MCU Sederhana" << endl;
+    cout << "5. Keluar" << endl;
     cout << "Pilih menu (1-4): ";
     cin >> pilihan;
 
@@ -37,9 +41,12 @@ void menuUtama() {
             kebutuhanasupanTubuh();
             break;
         case 3:
-            mcuSederhana();
+            kualitasTidur();
             break;
         case 4:
+            mcuSederhana();
+            break;
+        case 5:
             cout << "Terima kasih telah menggunakan aplikasi ini!, Sehat selaluu:)" << endl;
             return;
         default:
@@ -104,6 +111,26 @@ void kebutuhanasupanTubuh() {
         cout << "Bagus! Anda sudah cukup minum air hari ini." << endl;
     }
     cout << "\n";
+}
+
+void kualitasTidur() {
+    cout << "========= Kualitas Tidur ==========" << endl;
+    cout << "Masukan jam saat mulai tertidur: ";
+    cin >> jamTidur;
+    cout << "Masukan jam saat mulai terbangun: ";
+    cin >> jamBangun;
+    int mulai = jamTidur * 60;
+    int bangun = jamBangun * 60;
+    if (bangun < mulai){
+        bangun += 24 * 60;
+    }
+    int durasi = bangun - mulai;
+    int jam = durasi / 60;
+    cout << "Durasi tidur: " << jam << " jam" << endl;
+    if (jam < 6){
+        cout << "Kategori: Kurang tidur \n";
+        cout << "Tambahkan waktu tidur";
+    }
 }
 
 void mcuSederhana() {
