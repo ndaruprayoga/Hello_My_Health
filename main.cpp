@@ -1,5 +1,4 @@
 #include <iostream>
-#include <cstdlib>
 using namespace std;
 
 
@@ -10,13 +9,6 @@ void kalkulattorBMI();
 void kebutuhanasupanTubuh();
 void mcuSederhana();
 void menuUtama();
-void clearScreen() {
-    #ifdef _WIN32
-        system("cls");
-    #else
-        system("clear");
-    #endif
-}
 
 int beratNasi;
 int beratLauk;
@@ -34,7 +26,7 @@ void menuUtama() {
     cout << "2. Kebutuhan Asupan Tubuh" << endl;
     cout << "3. MCU Sederhana" << endl;
     cout << "4. Keluar" << endl;
-    cout << "Pilih menu (1-5): ";
+    cout << "Pilih menu (1-4): ";
     cin >> pilihan;
 
     switch (pilihan) {
@@ -53,7 +45,8 @@ void menuUtama() {
         default:
             cout << "Pilihan kamu gak valid. coba lagiii." << endl;
     }
-    menuUtama(); // Kembali ke menu utama setelah menyelesaikan pilihan
+    cout << "\n";
+    menuUtama();
 }
 
 void kalkulattorBMI() {
@@ -73,6 +66,7 @@ void kalkulattorBMI() {
     } else {
         cout << "WADUHH KAMU MASUK KATEGORI OBESITAS" << endl;
     }
+    cout << "\n";
 }
 
 void kebutuhanasupanTubuh() {
@@ -110,6 +104,7 @@ void kebutuhanasupanTubuh() {
     } else {
         cout << "Bagus! Anda sudah cukup minum air hari ini." << endl;
     }
+    cout << "\n";
 }
 
 void mcuSederhana() {
@@ -151,4 +146,5 @@ void mcuSederhana() {
     } else {
         cout << "Perlu perbaikan pola hidup." << endl;
     }
+    cout << "\n";
 }
