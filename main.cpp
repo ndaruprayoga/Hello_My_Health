@@ -10,9 +10,9 @@ void kebutuhanasupanTubuh();
 void mcuSederhana();
 void menuUtama();
 
-int beratNasi;
-int beratLauk;
-int beratSayur;
+int beratKarbo;
+int beratProtein;
+int beratSerat;
 
 int main() {
     menuUtama();
@@ -45,7 +45,6 @@ void menuUtama() {
         default:
             cout << "Pilihan kamu gak valid. coba lagiii." << endl;
     }
-    cout << "\n";
     menuUtama();
 }
 
@@ -75,19 +74,19 @@ void kebutuhanasupanTubuh() {
     cin >> gelas;
     cout << "Anda telah minum " << gelas << " gelas air hari ini." << endl;
     cout << "Jumlah ideal adalah 8 gelas per hari." << endl;
-    cout << "Masukan berat nasi yang Anda konsumsi (minimal 100 gram): ";
-    cin >> beratNasi;
-    int kaloriNasi = beratNasi * 129; // Asumsi 1 gram nasi mengandung 1.3 kalori
-    cout << "Kalori dari karbohidrat: " << kaloriNasi << " kalori" << endl;
-    cout << "Masukan berat lauk yang Anda konsumsi (dalam gram): ";
-    cin >> beratLauk;
-    int kaloriLauk = beratLauk * 2.5;
-    cout << "Kalori dari protein: " << kaloriLauk << " kalori" << endl;
-    cout << "berat sayur yang Anda konsumsi (dalam gram): ";
-    cin >> beratSayur;
-    int kaloriSayur = beratSayur * 0.5;
-    cout << "Kalori dari serat: " << kaloriSayur << " kalori" << endl;
-    kalori = kaloriNasi + kaloriLauk + kaloriSayur;
+    cout << "Masukan berat karbohidrat yang Anda konsumsi (minimal 100 gram): ";
+    cin >> beratKarbo;
+    int kaloriKarbo = beratKarbo * 129; // Asumsi 1 gram nasi mengandung 1.3 kalori
+    cout << "Kalori dari karbohidrat: " << kaloriKarbo << " kalori" << endl;
+    cout << "Masukan berat protein yang Anda konsumsi (dalam gram): ";
+    cin >> beratProtein;
+    int kaloriProtein = beratProtein * 2.5;
+    cout << "Kalori dari protein: " << kaloriProtein << " kalori" << endl;
+    cout << "berat serat yang Anda konsumsi (dalam gram): ";
+    cin >> beratSerat;
+    int kaloriSerat = beratSerat * 0.5;
+    cout << "Kalori dari serat: " << kaloriSerat << " kalori" << endl;
+    kalori = kaloriKarbo + kaloriProtein + kaloriSerat;
     cout << "Total kalori yang Anda konsumsi: " << kalori << " kalori" << endl;
     if (kalori < 2000) {
         cout << "Kalori Anda di bawah kebutuhan harian." << endl;
