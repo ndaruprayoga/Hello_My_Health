@@ -16,6 +16,7 @@ int beratProtein;
 int beratSerat;
 int jamTidur;
 int jamBangun;
+int umur;
 
 int main() {
     menuUtama();
@@ -115,22 +116,57 @@ void kebutuhanasupanTubuh() {
 
 void kualitasTidur() {
     cout << "========= Kualitas Tidur ==========" << endl;
+    cout << "Masukan Umur: ";
+    cin >> umur;
     cout << "Masukan jam saat mulai tertidur: ";
     cin >> jamTidur;
     cout << "Masukan jam saat mulai terbangun: ";
     cin >> jamBangun;
+
     int mulai = jamTidur * 60;
     int bangun = jamBangun * 60;
+
     if (bangun < mulai){
         bangun += 24 * 60;
     }
     int durasi = bangun - mulai;
     int jam = durasi / 60;
     cout << "Durasi tidur: " << jam << " jam" << endl;
-    if (jam < 6){
-        cout << "Kategori: Kurang tidur \n";
-        cout << "Tambahkan waktu tidur";
+
+    bool durasiCukup = false;
+    if (umur < 12){
+        durasiCukup = (jam >= 11);
     }
+    else {
+        durasiCukup = (jam >= 7);
+    }
+
+    cout << "Penilaian durasi Tidur: ";
+    if (durasiCukup) cout << "Cukup" << endl;
+    else cout << "Kurang" << endl;
+    
+    cout << "Jam mulai tidur: " << jamTidur << endl;
+
+    string kategoriJam;
+
+    if(jamTidur >= 21 && jamTidur <= 22) {
+        kategoriJam = "Ideal";
+        cout << "Ideal" << endl;
+    }
+    else if (jamTidur >= 23 || jamTidur <= 1){
+        kategoriJam = "Terlalu malam";
+        cout << "Terlalu malam" << endl;
+    }
+    else if (jamTidur >= 2 && jamTidur <= 5){
+        kategoriJam = "Sangat tidak sehat";
+        cout << "Sangat tidak sehat" << endl;
+    }
+    else {
+        kategoriJam = "Kurang Ideal";
+        cout << "Kurang Ideal" << endl;
+    }
+    cout << "\n";
+    
 }
 
 void mcuSederhana() {
