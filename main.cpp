@@ -13,7 +13,7 @@ void menuUtama();
 
 int beratKarbo;
 int beratProtein;
-int beratSerat;
+int beratlemak;
 int jamTidur;
 int jamBangun;
 int umur;
@@ -31,7 +31,7 @@ void menuUtama() {
     cout << "3. Kualitas Tidur" << endl;
     cout << "4. MCU Sederhana" << endl;
     cout << "5. Keluar" << endl;
-    cout << "Pilih menu (1-4): ";
+    cout << "Pilih menu (1-5): ";
     cin >> pilihan;
 
     switch (pilihan) {
@@ -82,19 +82,23 @@ void kebutuhanasupanTubuh() {
     cin >> gelas;
     cout << "Anda telah minum " << gelas << " gelas air hari ini." << endl;
     cout << "Jumlah ideal adalah 8 gelas per hari." << endl;
-    cout << "Masukan berat karbohidrat yang Anda konsumsi (minimal 100 gram): ";
+    
+    cout << "Masukan berat karbohidrat yang Anda konsumsi : ";
     cin >> beratKarbo;
-    int kaloriKarbo = beratKarbo * 129; // Asumsi 1 gram nasi mengandung 1.3 kalori
+    int kaloriKarbo = beratKarbo * 4; // Asumsi 1 gram nasi mengandung 1.3 kalori
     cout << "Kalori dari karbohidrat: " << kaloriKarbo << " kalori" << endl;
+
     cout << "Masukan berat protein yang Anda konsumsi (dalam gram): ";
     cin >> beratProtein;
-    int kaloriProtein = beratProtein * 2.5;
+    int kaloriProtein = beratProtein * 4;
     cout << "Kalori dari protein: " << kaloriProtein << " kalori" << endl;
-    cout << "berat serat yang Anda konsumsi (dalam gram): ";
-    cin >> beratSerat;
-    int kaloriSerat = beratSerat * 0.5;
-    cout << "Kalori dari serat: " << kaloriSerat << " kalori" << endl;
-    kalori = kaloriKarbo + kaloriProtein + kaloriSerat;
+
+    cout << "berat lemak yang Anda konsumsi (dalam gram): ";
+    cin >> beratlemak;
+    int kalorilemak = beratlemak * 9;
+    cout << "Kalori dari lemak: " << kalorilemak << " kalori" << endl;
+
+    kalori = kaloriKarbo + kaloriProtein + kalorilemak;
     cout << "Total kalori yang Anda konsumsi: " << kalori << " kalori" << endl;
     if (kalori < 2000) {
         cout << "Kalori Anda di bawah kebutuhan harian." << endl;
@@ -170,43 +174,5 @@ void kualitasTidur() {
 }
 
 void mcuSederhana() {
-    cout << "=== MCU Sederhana ===" << endl;
-    if (bmi == 0 || gelas == 0 || kalori == 0) {
-        cout << "Data belum lengkap. Silakan isi data BMI, Water Intake, dan Calories terlebih dahulu." << endl;
-        return;
-    }
-    cout << "Laporan Kesehatan Sederhana:" << endl;
-    cout << "Berat Badan: " << berat << " kg" << endl;
-    cout << "Tinggi Badan: " << tinggi << " m" << endl;
-    cout << "BMI: " << bmi << " - ";
-    if (bmi < 18.5) {
-        cout << "Kurus" << endl;
-    } else if (bmi >= 18.5 && bmi < 24.9) {
-        cout << "Normal" << endl;
-    } else if (bmi >= 25 && bmi < 29.9) {
-        cout << "Gemuk" << endl;
-    } else {
-        cout << "Obesitas" << endl;
-    }
-    cout << "Jumlah Gelas Air: " << gelas << " gelas - ";
-    if (gelas < 8) {
-        cout << "Kurang" << endl;
-    } else {
-        cout << "Cukup" << endl;
-    }
-    cout << "Kalori Konsumsi: " << kalori << " kalori - ";
-    if (kalori < 2000) {
-        cout << "Di bawah kebutuhan" << endl;
-    } else if (kalori == 2000) {
-        cout << "Sesuai kebutuhan" << endl;
-    } else {
-        cout << "Melebihi kebutuhan" << endl;
-    }
-    cout << "Kesimpulan: ";
-    if (bmi >= 18.5 && bmi < 24.9 && gelas >= 8 && kalori == 2000) {
-        cout << "Kesehatan Anda baik!" << endl;
-    } else {
-        cout << "Perlu perbaikan pola hidup." << endl;
-    }
-    cout << "\n";
+    
 }
