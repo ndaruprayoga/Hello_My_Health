@@ -8,7 +8,7 @@ int gelas = 0, kalori = 0;
 void kalkulattorBMI();
 void kebutuhanasupanTubuh();
 void kualitasTidur();
-void mcuSederhana();
+void indexKesehatan();
 void menuUtama();
 
 int beratKarbo;
@@ -45,7 +45,7 @@ void menuUtama() {
             kualitasTidur();
             break;
         case 4:
-            mcuSederhana();
+            indexKesehatan();
             break;
         case 5:
             cout << "Terima kasih telah menggunakan aplikasi ini!, Sehat selaluu:)" << endl;
@@ -173,6 +173,23 @@ void kualitasTidur() {
     
 }
 
-void mcuSederhana() {
-    
+void indexKesehatan() {
+    cout << "========Index Kesehatan========" << endl;
+
+    if (bmi == 0 || gelas == 0 || kalori == 0 || jamTidur == 0 || jamBangun == 0){
+        cout << "Data belum lengkap, isi BMI, isi Kebutuhan Asupan Tubuh, dan isi Kualitas Tidur" << endl;
+        return;
+    }
+
+    int skorTotal = 0;
+
+    if (bmi >= 18.5 && bmi < 25){
+        skorTotal += 30;
+    }else if (bmi >= 25 && bmi < 30){
+        skorTotal += 20;
+    }else if (bmi >= 17 && bmi < 18.5){
+        skorTotal += 15;
+    }else{
+        skorTotal += 5;
+    }
 }
