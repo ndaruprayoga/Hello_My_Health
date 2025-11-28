@@ -7,6 +7,7 @@ int gelas = 0, kalori = 0;
 
 void kalkulattorBMI();
 void kebutuhanasupanTubuh();
+void kebutuhancairanTubuh();
 void kualitasTidur();
 void indexKesehatan();
 void menuUtama();
@@ -27,10 +28,11 @@ void menuUtama() {
     cout << "Selamat datang di Aplikasi Hello My Health!" << endl;
     cout << "=== Menu Utama ===" << endl;
     cout << "1. Kalkulattor BMI" << endl;
-    cout << "2. Kebutuhan Asupan Tubuh" << endl;
-    cout << "3. Kualitas Tidur" << endl;
-    cout << "4. MCU Sederhana" << endl;
-    cout << "5. Keluar" << endl;
+    cout << "2. Kebutuhan Cairan Tubuh" << endl;
+    cout << "3. Kebutuhan Asupan Tubuh" << endl;
+    cout << "4. Kualitas Tidur" << endl;
+    cout << "5. Index Kesehatan" << endl;
+    cout << "6. Keluar" << endl;
     cout << "Pilih menu (1-5): ";
     cin >> pilihan;
 
@@ -39,15 +41,18 @@ void menuUtama() {
             kalkulattorBMI();
             break;
         case 2:
-            kebutuhanasupanTubuh();
+            kebutuhancairanTubuh();
             break;
         case 3:
-            kualitasTidur();
+            kebutuhanasupanTubuh();
             break;
         case 4:
-            indexKesehatan();
+            kualitasTidur();
             break;
         case 5:
+            indexKesehatan();
+            break;
+        case 6:
             cout << "Terima kasih telah menggunakan aplikasi ini!, Sehat selaluu:)" << endl;
             return;
         default:
@@ -76,13 +81,24 @@ void kalkulattorBMI() {
     cout << "\n";
 }
 
-void kebutuhanasupanTubuh() {
-    cout << "=== Reminder Water Intake ===" << endl;
+void kebutuhancairanTubuh() {
+    cout << "=== Kebutuhan Cairan Tubuh ===" << endl;
     cout << "Masukkan jumlah gelas air yang Anda minum hari ini: ";
     cin >> gelas;
     cout << "Anda telah minum " << gelas << " gelas air hari ini." << endl;
     cout << "Jumlah ideal adalah 8 gelas per hari." << endl;
-    
+    if (gelas < 8) {
+        cout << "Ingat untuk minum lebih banyak air!" << endl;
+        if (gelas < 4) {
+            cout << "Anda sangat kurang minum air. Pastikan untuk minum setidaknya 8 gelas sehari." << endl;
+        }
+    } else {
+        cout << "Bagus! Anda sudah cukup minum air hari ini." << endl;
+    }
+    cout << "\n";
+}
+
+void kebutuhanasupanTubuh(){
     cout << "Masukan berat karbohidrat yang Anda konsumsi : ";
     cin >> beratKarbo;
     int kaloriKarbo = beratKarbo * 4; // Asumsi 1 gram nasi mengandung 1.3 kalori
@@ -107,15 +123,6 @@ void kebutuhanasupanTubuh() {
     } else {
         cout << "Kalori Anda melebihi kebutuhan harian." << endl;
     }
-    if (gelas < 8) {
-        cout << "Ingat untuk minum lebih banyak air!" << endl;
-        if (gelas < 4) {
-            cout << "Anda sangat kurang minum air. Pastikan untuk minum setidaknya 8 gelas sehari." << endl;
-        }
-    } else {
-        cout << "Bagus! Anda sudah cukup minum air hari ini." << endl;
-    }
-    cout << "\n";
 }
 
 void kualitasTidur() {
@@ -177,7 +184,7 @@ void indexKesehatan() {
     cout << "========Index Kesehatan========" << endl;
 
     if (bmi == 0 || gelas == 0 || kalori == 0 || jamTidur == 0 || jamBangun == 0){
-        cout << "Data belum lengkap, isi BMI, isi Kebutuhan Asupan Tubuh, dan isi Kualitas Tidur" << endl;
+        cout << "Data belum lengkap, isi BMI,isi Kebutuhan Ciaran Tubuh, isi Kebutuhan Asupan Tubuh, dan isi Kualitas Tidur" << endl;
         return;
     }
 
@@ -192,4 +199,54 @@ void indexKesehatan() {
     }else{
         skorTotal += 5;
     }
+
+    if (gelas >= 8){
+        skorTotal += 20;
+    }else if (gelas >= 5){
+        skorTotal += 15;
+    }else{
+        skorTotal += 5;
+    }
+
+    if (kalori >= 1800 && kalori <= 2000){
+        skorTotal += 25;
+    }else if(kalori >= 1500 && kalori <= 1800){
+        skorTotal += 15;
+    }else if(kalori > 2200 && kalori <= 2600){
+        skorTotal += 10;
+    }else {
+        skorTotal += 5;
+    }
+
+    int mulai = jamTidur * 60;
+    int bangun = jamBangun * 60;
+
+    if (bangun < mulai) {
+        bangun += 24 * 60;
+    }
+
+    int durasi = (bangun - mulai) / 60; 
+
+    if (durasi >= 7 && durasi <= 9) {
+        skorTotal += 25;                
+    } 
+    else if (durasi >= 5 && durasi < 7) {
+        skorTotal += 15;                
+    }
+    else {
+        skorTotal += 5;                
+    }
+
+    cout << "\nSkor Total Anda: " << skorTotal << "/100" << endl;
+    cout << "Kategori Kesehatan: ";
+
+    if (skorTotal >= 80) {
+        cout << "Baik" << endl;
+    } else if (skorTotal >= 50) {
+        cout << "Cukup" << endl;
+    } else {
+        cout << "Kurang" << endl;
+    }
+
+    cout << "========================================\n";
 }
