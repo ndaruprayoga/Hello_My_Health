@@ -25,7 +25,7 @@ int main() {
 }
 void menuUtama() {
     int pilihan;
-    cout << "Selamat datang di Aplikasi Hello My Health!" << endl;
+    cout << "Selamat datang di Aplikasi Hello My Health!" << endl;6
     cout << "=== Menu Utama ===" << endl;
     cout << "1. Kalkulattor BMI" << endl;
     cout << "2. Kebutuhan Cairan Tubuh" << endl;
@@ -33,7 +33,7 @@ void menuUtama() {
     cout << "4. Kualitas Tidur" << endl;
     cout << "5. Index Kesehatan" << endl;
     cout << "6. Keluar" << endl;
-    cout << "Pilih menu (1-5): ";
+    cout << "Pilih menu (1-6): ";
     cin >> pilihan;
 
     switch (pilihan) {
@@ -101,7 +101,7 @@ void kebutuhancairanTubuh() {
 void kebutuhanasupanTubuh(){
     cout << "Masukan berat karbohidrat yang Anda konsumsi : ";
     cin >> beratKarbo;
-    int kaloriKarbo = beratKarbo * 4; // Asumsi 1 gram nasi mengandung 1.3 kalori
+    int kaloriKarbo = beratKarbo * 4;
     cout << "Kalori dari karbohidrat: " << kaloriKarbo << " kalori" << endl;
 
     cout << "Masukan berat protein yang Anda konsumsi (dalam gram): ";
@@ -127,57 +127,41 @@ void kebutuhanasupanTubuh(){
 
 void kualitasTidur() {
     cout << "========= Kualitas Tidur ==========" << endl;
-    cout << "Masukan Umur: ";
+    cout << "Masukkan Umur: ";
     cin >> umur;
-    cout << "Masukan jam saat mulai tertidur: ";
+
+    cout << "\n=== Rekomendasi Durasi Tidur Berdasarkan Usia ===\n";
+
+    int rekomendasiTidur[4][2] = {
+        {10, 12},   // Balita 1–5 tahun
+        {9, 11},    // Anak-anak 6–12 tahun
+        {8, 10},    // Remaja 13–17 tahun
+        {7, 9}      // Dewasa 18+
+    };
+
+    cout << "Kelompok Usia | Minimum | Maksimum (jam)\n";
+    cout << "-------------------------------------------\n";
+    cout << "1. Balita      : " << rekomendasiTidur[0][0] << " - " << rekomendasiTidur[0][1] << endl;
+    cout << "2. Anak-anak   : " << rekomendasiTidur[1][0] << " - " << rekomendasiTidur[1][1] << endl;
+    cout << "3. Remaja      : " << rekomendasiTidur[2][0] << " - " << rekomendasiTidur[2][1] << endl;
+    cout << "4. Dewasa      : " << rekomendasiTidur[3][0] << " - " << rekomendasiTidur[3][1] << endl;
+
+    // ===== Bagian asli kualitas tidur (lanjutkan kode anda di bawah) =====
+    cout << "\nJam Berapa Anda Tidur: ";
     cin >> jamTidur;
-    cout << "Masukan jam saat mulai terbangun: ";
+    cout << "Jam Berapa Anda Bangun: ";
     cin >> jamBangun;
 
-    int mulai = jamTidur * 60;
-    int bangun = jamBangun * 60;
-
-    if (bangun < mulai){
-        bangun += 24 * 60;
-    }
-    int durasi = bangun - mulai;
-    int jam = durasi / 60;
-    cout << "Durasi tidur: " << jam << " jam" << endl;
-
-    bool durasiCukup = false;
-    if (umur < 12){
-        durasiCukup = (jam >= 11);
-    }
-    else {
-        durasiCukup = (jam >= 7);
+    int durasiTidur = 0;
+    if (jamBangun >= jamTidur) {
+        durasiTidur = jamBangun - jamTidur;
+    } else {
+        durasiTidur = (24 - jamTidur) + jamBangun;
     }
 
-    cout << "Penilaian durasi Tidur: ";
-    if (durasiCukup) cout << "Cukup" << endl;
-    else cout << "Kurang" << endl;
-    
-    cout << "Jam mulai tidur: " << jamTidur << endl;
+    cout << "Durasi Tidur Anda: " << durasiTidur << " jam" << endl;
 
-    string kategoriJam;
-
-    if(jamTidur >= 21 && jamTidur <= 22) {
-        kategoriJam = "Ideal";
-        cout << "Ideal" << endl;
-    }
-    else if (jamTidur >= 23 || jamTidur <= 1){
-        kategoriJam = "Terlalu malam";
-        cout << "Terlalu malam" << endl;
-    }
-    else if (jamTidur >= 2 && jamTidur <= 5){
-        kategoriJam = "Sangat tidak sehat";
-        cout << "Sangat tidak sehat" << endl;
-    }
-    else {
-        kategoriJam = "Kurang Ideal";
-        cout << "Kurang Ideal" << endl;
-    }
     cout << "\n";
-    
 }
 
 void indexKesehatan() {
