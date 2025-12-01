@@ -20,6 +20,33 @@ int jamTidur;
 int jamBangun;
 int umur;
 
+bool inputAngkaValid() {
+    if (cin.fail()) {
+        cin.clear();        // reset error input
+        cin.ignore(1000, '\n'); 
+        cout << "Input tidak valid! Harap masukkan angka.\n";
+        return false;
+    }
+    return true;
+}
+
+bool inputTidakNegatif(float x) {
+    if (x < 0) {
+        cout << "⚠ Input tidak boleh negatif!\n";
+        return false;
+    }
+    return true;
+}
+
+bool inputRange(int x, int min, int max) {
+    if (x < min || x > max) {
+        cout << "Input harus berada pada rentang " << min << " - " << max << ".\n";
+        return false;
+    }
+    return true;
+}
+
+
 int main() {
     menuUtama();
     return 0;
@@ -72,8 +99,10 @@ void kalkulattorBMI() {
     cout << "=== Kalkulattor BMI ===" << endl;
     cout << "Masukkan berat badan (kg): ";
     cin >> berat;
+    if (!inputAngkaValid() || !inputTidakNegatif(berat)) return pauseScreen();
     cout << "Masukkan tinggi badan (m): ";
     cin >> tinggi;
+    if (!inputAngkaValid() || !inputTidakNegatif(tinggi)) return pauseScreen();
     bmi = berat / (tinggi * tinggi);
     cout << "BMI Anda adalah: " << bmi << endl;
     if (bmi < 18.5) {
@@ -93,6 +122,7 @@ void kebutuhancairanTubuh() {
     cout << "=== Kebutuhan Cairan Tubuh ===" << endl;
     cout << "Masukkan jumlah gelas air yang Anda minum hari ini: ";
     cin >> gelas;
+    if (!inputAngkaValid() || !inputTidakNegatif(gelas)) return pauseScreen();
     cout << "Anda telah minum " << gelas << " gelas air hari ini." << endl;
     cout << "Jumlah ideal adalah 8 gelas per hari." << endl;
     if (gelas < 8) {
@@ -110,19 +140,21 @@ void kebutuhancairanTubuh() {
 void kebutuhanasupanTubuh(){
     cout << "Masukan berat karbohidrat yang Anda konsumsi : ";
     cin >> beratKarbo;
+    if (!inputAngkaValid() || !inputTidakNegatif(beratKarbo)) return pauseScreen();
     int kaloriKarbo = beratKarbo * 4;
     cout << "Kalori dari karbohidrat: " << kaloriKarbo << " kalori" << endl;
 
     cout << "Masukan berat protein yang Anda konsumsi (dalam gram): ";
     cin >> beratProtein;
+    if (!inputAngkaValid() || !inputTidakNegatif(beratProtein)) return pauseScreen();
     int kaloriProtein = beratProtein * 4;
     cout << "Kalori dari protein: " << kaloriProtein << " kalori" << endl;
 
     cout << "berat lemak yang Anda konsumsi (dalam gram): ";
     cin >> beratlemak;
+    if (!inputAngkaValid() || !inputTidakNegatif(beratKarbo)) return pauseScreen();
     int kalorilemak = beratlemak * 9;
     cout << "Kalori dari lemak: " << kalorilemak << " kalori" << endl;
-
     kalori = kaloriKarbo + kaloriProtein + kalorilemak;
     cout << "Total kalori yang Anda konsumsi: " << kalori << " kalori" << endl;
     if (kalori < 2000) {
@@ -139,6 +171,7 @@ void kualitasTidur() {
     cout << "========= Kualitas Tidur ==========" << endl;
     cout << "Masukkan Umur: ";
     cin >> umur;
+    if (!inputAngkaValid() || !inputRange(umur, 1, 100)) return;
 
     // Rekomendasi durasi tidur berdasarkan umur
     int rekomendasiTidur[4][2] = {
@@ -150,8 +183,10 @@ void kualitasTidur() {
 
     cout << "\nJam Berapa Anda Tidur: ";
     cin >> jamTidur;
+    if (!inputAngkaValid() || !inputRange(jamTidur, 0, 23)) return;
     cout << "Jam Berapa Anda Bangun: ";
     cin >> jamBangun;
+    if (!inputAngkaValid() || !inputRange(jamBangun, 0, 23)) return;
 
     // Hitung durasi tidur SESUNGGUHNYA
     int durasiTidur;
