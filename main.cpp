@@ -51,12 +51,13 @@ int main() {
     menuUtama();
     return 0;
 }
+
 void menuUtama() {
     int pilihan;
 
     do {
         cout << "\n=== MENU UTAMA ===\n";
-        cout << "1. Kalkulator BMI\n";
+        cout << "1. Kalkulator IMT\n";
         cout << "2. Kebutuhan Cairan Tubuh\n";
         cout << "3. Kebutuhan Asupan Tubuh\n";
         cout << "4. Kualitas Tidur\n";
@@ -96,7 +97,7 @@ void pauseScreen() {
 }
 
 void kalkulattorBMI() {
-    cout << "=== Kalkulattor BMI ===" << endl;
+    cout << "=== Kalkulattor IMT ===" << endl;
     cout << "Masukkan berat badan (kg): ";
     cin >> berat;
     if (!inputAngkaValid() || !inputTidakNegatif(berat)) return pauseScreen();
@@ -275,12 +276,13 @@ void indexKesehatan() {
     cout << "========Index Kesehatan========" << endl;
 
     if (bmi == 0 || gelas == 0 || kalori == 0 || jamTidur == 0 || jamBangun == 0){
-        cout << "Data belum lengkap, isi BMI,isi Kebutuhan Ciaran Tubuh, isi Kebutuhan Asupan Tubuh, dan isi Kualitas Tidur" << endl;
+        cout << "Data belum lengkap, isi BMI, isi Kebutuhan Ciaran Tubuh, isi Kebutuhan Asupan Tubuh, dan isi Kualitas Tidur" << endl;
         return;
     }
 
     int skorTotal = 0;
 
+    // ===================== BMI =====================
     if (bmi >= 18.5 && bmi < 25){
         skorTotal += 30;
     }else if (bmi >= 25 && bmi < 30){
@@ -291,6 +293,7 @@ void indexKesehatan() {
         skorTotal += 5;
     }
 
+    // ================== Cairan =====================
     if (gelas >= 8){
         skorTotal += 20;
     }else if (gelas >= 5){
@@ -299,6 +302,7 @@ void indexKesehatan() {
         skorTotal += 5;
     }
 
+    // ================== Kalori =====================
     if (kalori >= 1800 && kalori <= 2000){
         skorTotal += 25;
     }else if(kalori >= 1500 && kalori <= 1800){
@@ -309,35 +313,40 @@ void indexKesehatan() {
         skorTotal += 5;
     }
 
+    // ================== Durasi Tidur =====================
     int mulai = jamTidur * 60;
     int bangun = jamBangun * 60;
 
-    if (bangun < mulai) {
-        bangun += 24 * 60;
-    }
+    if (bangun < mulai) bangun += 24 * 60;
 
-    int durasi = (bangun - mulai) / 60; 
+    int durasi = (bangun - mulai) / 60;
 
-    if (durasi >= 7 && durasi <= 9) {
-        skorTotal += 25;                
-    } 
-    else if (durasi >= 5 && durasi < 7) {
-        skorTotal += 15;                
-    }
-    else {
-        skorTotal += 5;                
-    }
+    if (durasi >= 7 && durasi <= 9) skorTotal += 25;
+    else if (durasi >= 5 && durasi < 7) skorTotal += 15;
+    else skorTotal += 5;
 
+    // ================== OUTPUT TABEL =====================
+    cout << "\n============================================\n";
+    cout << "               TABEL INDEX KESEHATAN         \n";
+    cout << "============================================\n";
+    cout << "| No |       Fitur        |   Keterangan   |    Nilai     |\n";
+    cout << "------------------------------------------------------------\n";
+
+    cout << "| 1  | BMI                | Nilai          | " << bmi       << "        |\n";
+    cout << "| 2  | Cairan Tubuh       | Gelas          | " << gelas     << " gelas  |\n";
+    cout << "| 3  | Kalori Harian      | Total (kal)    | " << kalori    << "        |\n";
+    cout << "| 4  | Durasi Tidur       | Jam            | " << durasi    << " jam    |\n";
+    cout << "| 5  | Skor Kesehatan     | Total          | " << skorTotal << "/100    |\n";
+
+    cout << "------------------------------------------------------------\n";
+
+    // ================== OUTPUT KESIMPULAN =====================
     cout << "\nSkor Total Anda: " << skorTotal << "/100" << endl;
     cout << "Kategori Kesehatan: ";
 
-    if (skorTotal >= 80) {
-        cout << "Baik" << endl;
-    } else if (skorTotal >= 50) {
-        cout << "Cukup" << endl;
-    } else {
-        cout << "Kurang" << endl;
-    }
+    if (skorTotal >= 80) cout << "Baik" << endl;
+    else if (skorTotal >= 50) cout << "Cukup" << endl;
+    else cout << "Kurang" << endl;
 
     cout << "========================================\n";
     pauseScreen();
