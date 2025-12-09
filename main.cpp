@@ -270,6 +270,7 @@ void kualitasTidur() {
     }
 
     cout << "\n";
+    pauseScreen();
 }
 
 void indexKesehatan() {
@@ -325,18 +326,18 @@ void indexKesehatan() {
     else if (durasi >= 5 && durasi < 7) skorTotal += 15;
     else skorTotal += 5;
 
-    // ================== OUTPUT TABEL =====================
-    cout << "\n============================================\n";
+    cout << "============================================\n";
     cout << "               TABEL INDEX KESEHATAN         \n";
     cout << "============================================\n";
-    cout << "| No |       Fitur        |   Keterangan   |    Nilai     |\n";
+
+    cout << "| No |       Fitur        |   Keterangan   |     Nilai     |\n";
     cout << "------------------------------------------------------------\n";
 
-    cout << "| 1  | BMI                | Nilai          | " << bmi       << "        |\n";
-    cout << "| 2  | Cairan Tubuh       | Gelas          | " << gelas     << " gelas  |\n";
-    cout << "| 3  | Kalori Harian      | Total (kal)    | " << kalori    << "        |\n";
-    cout << "| 4  | Durasi Tidur       | Jam            | " << durasi    << " jam    |\n";
-    cout << "| 5  | Skor Kesehatan     | Total          | " << skorTotal << "/100    |\n";
+    cout << "|  1 | IMT                | Nilai          | " << bmi << "       |\n";
+    cout << "|  2 | Cairan Tubuh       | Gelas          | " << gelas << " gelas       |\n";
+    cout << "|  3 | Kalori Harian      | Total (kal)    | " << kalori << "           |\n";
+    cout << "|  4 | Durasi Tidur       | Jam            | " << durasi << " jam         |\n";
+    cout << "|  5 | Skor Kesehatan     | Total          | " << skorTotal << "        |\n";
 
     cout << "------------------------------------------------------------\n";
 
